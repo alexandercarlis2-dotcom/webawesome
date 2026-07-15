@@ -344,6 +344,20 @@ render() {
 
 This results in a consistent, easy to understand structure for parts. In this example, the `icon` part will target the host element and the `icon__base` part will target the icon's `base` part.
 
+#### The canonical wrapper part
+
+Every component exposes a canonical part on its outermost rendered element, named after the component (the tag name without the `wa-` prefix). For `<wa-accordion>` that part is `accordion`; for `<wa-tab-panel>` it's `tab-panel`. When the component name is already used for an inner part (for example, `<wa-input>` names its native control `input`), the wrapper takes a `-wrapper` suffix instead: `input-wrapper`, `textarea-wrapper`.
+
+```js
+render() {
+  return html` <div part="base details">...</div> `;
+}
+```
+
+This replaces the older generic `base` part. `base` continues to work as a `::part()` target for backward compatibility, but it is hidden from the documentation in favor of the canonical name and is slated for deprecation in a future major version.
+
+Two cases fall outside the `base` + canonical pattern. A component that renders no `base` — like `<wa-accordion>`, whose wrapper is a `<slot>` — exposes only its canonical part (`part="accordion"`), and new components scaffolded from now on follow suit. Components whose "base" is the host element itself (for example, `<wa-dropdown>` and `<wa-tag>`) render no wrapper at all and are styled directly.
+
 ### Dependencies
 
 TL;DR – a component is a dependency if and only if it's rendered inside another component's shadow root.

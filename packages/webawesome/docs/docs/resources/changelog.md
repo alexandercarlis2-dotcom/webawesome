@@ -31,6 +31,13 @@ Web Awesome follows <a href="https://semver.org/" class="appearance-plain">Seman
 
 ## Unreleased
 
+:::added
+
+- Added a canonical CSS part to every component, named after the component (e.g. `accordion`, `card`, `tab-panel`), as the semantic replacement for the generic `base` part. Components whose name is already an inner part use a `-wrapper` suffix (`input-wrapper`, `textarea-wrapper`).
+  - `base` continues to work as a `::part()` target but is now hidden from the documentation in favor of the canonical name.
+
+:::
+
 :::fixed
 
 - Fixed a Safari-only clip-path/border seam along the arrow's outer edges by painting the arrow border with an inset box-shadow instead of a `border`

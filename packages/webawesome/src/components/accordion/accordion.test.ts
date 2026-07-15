@@ -33,6 +33,17 @@ describe('<wa-accordion>', () => {
         });
       });
 
+      describe('css parts', () => {
+        it('should expose the accordion part on the default slot', async () => {
+          const el = await fixture<WaAccordion>(html`
+            <wa-accordion>
+              <wa-accordion-item label="One">Content</wa-accordion-item>
+            </wa-accordion>
+          `);
+          expect(el.shadowRoot!.querySelector('slot[part~="accordion"]')).to.exist;
+        });
+      });
+
       describe('properties', () => {
         it('should default mode to multiple', async () => {
           const el = await fixture<WaAccordion>(html`

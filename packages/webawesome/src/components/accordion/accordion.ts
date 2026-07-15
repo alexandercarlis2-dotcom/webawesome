@@ -20,6 +20,8 @@ import styles from './accordion.styles.js';
  *
  * @slot - One or more `<wa-accordion-item>` elements.
  *
+ * @csspart accordion - The component's outer wrapper. As a `<slot>`, set `display` before applying box styles.
+ *
  * @event {{ item: WaAccordionItem }} wa-expand - Emitted before an item expands. Cancelable.
  * @event {{ item: WaAccordionItem }} wa-after-expand - Emitted after an item finishes expanding.
  * @event {{ item: WaAccordionItem }} wa-collapse - Emitted before an item collapses. Cancelable.
@@ -203,6 +205,7 @@ export default class WaAccordion extends WebAwesomeElement {
   render() {
     return html`
       <slot
+        part="accordion"
         @slotchange=${this.handleSlotChange}
         @wa-accordion-item-trigger=${this.handleItemTrigger}
         @focusin=${this.handleFocusIn}

@@ -16,6 +16,7 @@ let id = 0;
  * @slot - The tab panel's content.
  *
  * @csspart base - The component's base wrapper.
+ * @csspart tab-panel - The component's outer wrapper. As a `<slot>`, set `display` before applying box styles.
  *
  * @cssproperty --padding - The tab panel's padding.
  */
@@ -47,7 +48,7 @@ export default class WaTabPanel extends WebAwesomeElement {
   render() {
     return html`
       <slot
-        part="base"
+        part="base tab-panel"
         class=${classMap({
           'tab-panel': true,
           'tab-panel-active': this.active,

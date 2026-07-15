@@ -15,6 +15,7 @@ import styles from './button-group.styles.js';
  * @slot - One or more `<wa-button>` elements to display in the button group.
  *
  * @csspart base - The component's base wrapper.
+ * @csspart button-group - The component's outer wrapper. As a `<slot>`, set `display` before applying box styles.
  */
 @customElement('wa-button-group')
 export default class WaButtonGroup extends WebAwesomeElement {
@@ -65,7 +66,7 @@ export default class WaButtonGroup extends WebAwesomeElement {
   render() {
     return html`
       <slot
-        part="base"
+        part="base button-group"
         class="button-group"
         role="${this.disableRole ? 'presentation' : 'group'}"
         aria-label=${this.label}

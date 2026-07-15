@@ -22,7 +22,8 @@ export function getComponents() {
         const slots = declaration.slots?.sort(sortByName);
         const events = declaration.events?.sort(sortByName);
         const cssProperties = declaration.cssProperties?.sort(sortByName);
-        const cssParts = declaration.cssParts?.sort(sortByName);
+        // Hide the legacy `base` part from the docs table. It still works as a `::part()` target and stays in the manifest.
+        const cssParts = declaration.cssParts?.filter(part => part.name !== 'base').sort(sortByName);
         const cssStates = declaration.cssStates?.sort(sortByName);
         const dependencies = declaration.dependencies?.sort((a, b) => a.localeCompare(b));
 
