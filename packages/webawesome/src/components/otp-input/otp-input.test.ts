@@ -120,9 +120,15 @@ describe('<wa-otp-input>', () => {
 
         it('should render separators from the format string', async () => {
           const el = await fixture<WaOtpInput>(html`<wa-otp-input format="###-###"></wa-otp-input>`);
-          const separators = el.shadowRoot!.querySelectorAll('[part~="segment-separator"]');
+          const separators = el.shadowRoot!.querySelectorAll('[part~="segment-literal"]');
           expect(separators.length).to.equal(1);
           expect(separators[0].textContent).to.equal('-');
+        });
+
+        it('should expose a base part on the segments wrapper', async () => {
+          const el = await fixture<WaOtpInput>(html`<wa-otp-input label="Code"></wa-otp-input>`);
+          const base = el.shadowRoot!.querySelector('[part~="base"]');
+          expect(base).to.equal(el.shadowRoot!.querySelector('.segments'));
         });
 
         it('should accept a value up to the number of # in format', async () => {
